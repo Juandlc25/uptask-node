@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        include partials/header
+    body.login
+        .contenedor-formulario
+
+            h1= name
+            p Add your email to reset the password
+
+            if locals.messages
+                .alertas
+                    each categoria in Object.keys(locals.messages)
+                        each error in messages[categoria]
+                            .alerta(class=`${categoria}`)
+                                p= error
+            
+            form.caja-login(method="POST" action="/reset")
+                .campo
+                    label(for="email") E-mail:
+                    input(type="text" name="email" placeholder="Email" )
+                .campo.enviar
+                    input.boton(type="submit" value="Reset Password")
+                .campo.acciones
+                    a(href="/sign-in") I already remembered, go back to Login

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        include partials/header
+    body.login
+        .contenedor-formulario
+            h1 Log in UpTask
+            
+            if locals.messages
+                .alertas
+                    each categoria in Object.keys(locals.messages)
+                        each error in messages[categoria]
+                            .alerta(class=`${categoria}`)
+                                p= error
+
+            form#formulario.caja.caja-login(method="POST" action="/sign-in")
+                .campo
+                    label(for="email") E-mail:
+                    input(type="text" name="email" placeholder="Email" )
+                .campo
+                    label(for="password") Password:
+                    input(type="password" name="password" placeholder="Password" )
+                .campo.enviar
+                    input.boton(type="submit" value="Sign In")
+                .campo.acciones
+                    a(href="/sign-up") Don't have an account yet? Create one for free
+                    a(href="/reset") I forgot my password
